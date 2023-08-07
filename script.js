@@ -128,7 +128,7 @@ function onDelete(index) {
 
     studentlist.splice(index, 1);
     localStorage.setItem("studentlist", JSON.stringify(studentlist));
-    showdata();
+    document.onload =  showdata();
 
 }
 
@@ -146,9 +146,9 @@ function resetForm() {
 
 
 function tableredirect(){
-    window.location='http://127.0.0.1:5500/index.html';
+    window.location='https://ashish11parmar.github.io/crud-with-javascript/index.html';
 }
 
 function editredirect(){
-    window.location = 'http://127.0.0.1:5500/update.html';
+    window.location = 'https://ashish11parmar.github.io/crud-with-javascript/update.html';
 }
