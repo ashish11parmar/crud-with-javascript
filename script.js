@@ -128,6 +128,7 @@ function onDelete(index) {
 
     studentlist.splice(index, 1);
     localStorage.setItem("studentlist", JSON.stringify(studentlist));
+    showdata();
 
 }
 
