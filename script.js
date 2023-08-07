@@ -2,8 +2,8 @@
 
 function showdata() {
 
+    document.getElementById("update").style.display = "none";
     var studentlist;
-
     if (localStorage.getItem("studentlist") == null) {
         studentlist = [];
         return false;
@@ -41,6 +41,8 @@ function showdata() {
 
     });
     document.getElementById("Student").innerHTML = student;
+
+    
 }
 
 document.onload = showdata();
@@ -85,29 +87,37 @@ function AddData() {
     });
 
     localStorage.setItem("studentlist", JSON.stringify(studentlist));
-    
+    window.onload = showdata();
     resetForm();
-    tableredirect();
 
 }
 
-function onEdit(i) { 
+function onEdit(index) { 
     var studentlist;
     if (localStorage.getItem("studentlist") == null) {
         studentlist = [];
         return false;
         
     }
+
     else {
-        studentlist = JSON.parse(localStorage.getItem("studentlist"))
+        studentlist = JSON.parse(localStorage.getItem("studentlist"));
+        console.log(studentlist);
     }
 
-    var data = localStorage.getItem("studentlist");
-    console.log(data);
+    document.getElementById("submit").style.display = "none";
+    document.getElementById("update").style.display = "block";
+
+    document.getElementById("firstname").value = studentlist[index].firstname;
+    document.getElementById("lastname").value = studentlist[index].lastname;
+    document.getElementById("email").value = studentlist[index].email;
+    document.getElementById("password").value = studentlist[index].password;
+    document.querySelector('input[name="gender"]:checked').value = studentlist[index].gender;
+    document.getElementById("Playing" && "Travelling").value = studentlist[index].hobbie;
+    document.querySelector('#City').value = studentlist[index].city;
+    document.getElementById('file').value = studentlist[index].image;
     
-    editredirect();
-    
-   
+
 }
 
 
@@ -144,11 +154,3 @@ function resetForm() {
     document.getElementById('file').value = "";
 }
 
-
-function tableredirect(){
-    window.location='https://ashish11parmar.github.io/crud-with-javascript/index.html';
-}
-
-function editredirect(){
-    window.location = 'https://ashish11parmar.github.io/crud-with-javascript/update.html';
-}
