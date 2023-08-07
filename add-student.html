@@ -109,7 +109,8 @@
           <a type="button" href="index.html" class="btn btn-outline-danger mt-4">Go Back</a>
         </div>
       </div>
-      <form action="" id="studnet_details" class="add-form">
+      
+      <form onsubmit="onFormSubmit();" id="studnet_details" class="add-form">
 
         <div class="form">
           <div class="left">
@@ -173,13 +174,14 @@
             </div>
             <div class="form-group mt-4">
               <label for="name" class="label" style="padding-left: 18px;">Upload:</label>
-              <input type="file" class="custom-file-input" name="file" id="file">
+              <input type="text" class="form-control" name="file" id="file">
             </div>
 
           </div>
+          <div class="print"></div>
         </div>
         <div class="button">
-          <button type="submit" class="submit btn btn-outline-danger">Submit</button>
+          <button type="button" id="submit" onclick="AddData()"  class="submit btn btn-outline-danger">Submit</button>
         <a  class="submit btn btn-outline-danger" onclick="resetForm();">Reset</a>
     </div>
       </form>
