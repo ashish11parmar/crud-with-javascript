@@ -97,16 +97,17 @@
             </select>
           </div>
           <div class="form-group mt-4">
-            <label for="name" class="label" style="padding-left: 18px;">Upload:</label>
+            <label for="name" class="label" style="padding-left: 18px;">PicUrl:</label>
             <input type="text" class="form-control" name="file" id="file">
           </div>
 
         </div>
         <div class="print"></div>
       </div>
+      
       <div class="button">
         <button type="button" id="submit" onclick="AddData();"  class="submit btn btn-outline-danger">Submit</button>
-        <button type="button" id="update" onclick="onEdit();"  class="submit btn btn-outline-danger">update</button>
+        <button type="button" id="update" onclick="onEdit(index);"  class="submit btn btn-outline-danger">update</button>
       <a  class="submit btn btn-outline-danger" onclick="resetForm();">Reset</a>
   </div>
     </form>

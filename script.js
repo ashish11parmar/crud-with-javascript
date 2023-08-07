@@ -1,7 +1,6 @@
-
+// get all data in table formate 
 
 function showdata() {
-
     document.getElementById("update").style.display = "none";
     var studentlist;
     if (localStorage.getItem("studentlist") == null) {
@@ -16,11 +15,9 @@ function showdata() {
 
     var student = "";
 
-    studentlist.forEach(function (element) {
+    studentlist.forEach(function (element, index) {
 
         student += `
-        
-
         <tr>
         
         <td><img src="${element.image}" alt="img" width="30px"></td>
@@ -32,23 +29,25 @@ function showdata() {
         <td>${element.city}</td>
         <td>${element.hobbie}</td>
         <td>
-        <button type="button" onclick="onEdit()" class="btn btn-outline-light">Edit</button>
-        <button type="button" onclick="onDelete()" class="btn btn-outline-light">Delete</button>
+        <button type="button" onclick="onEdit(${index})" class="btn btn-outline-light">Edit</button>
+        <button type="button" onclick="onDelete(${index});" class="btn btn-outline-light">Delete</button>
         </td>
 
-        </tr>
-        `
+        </tr>`
 
     });
     document.getElementById("Student").innerHTML = student;
 
     
+
 }
 
 document.onload = showdata();
 
 
 
+
+// add data in localstorage 
 
 function AddData() {
 
@@ -89,8 +88,12 @@ function AddData() {
     localStorage.setItem("studentlist", JSON.stringify(studentlist));
     window.onload = showdata();
     resetForm();
+    location.reload();
 
 }
+
+
+// Update the data 
 
 function onEdit(index) { 
     var studentlist;
@@ -102,7 +105,7 @@ function onEdit(index) {
 
     else {
         studentlist = JSON.parse(localStorage.getItem("studentlist"));
-        console.log(studentlist);
+        // console.log(studentlist);
     }
 
     document.getElementById("submit").style.display = "none";
@@ -112,22 +115,42 @@ function onEdit(index) {
     document.getElementById("lastname").value = studentlist[index].lastname;
     document.getElementById("email").value = studentlist[index].email;
     document.getElementById("password").value = studentlist[index].password;
-    document.querySelector('input[name="gender"]:checked').value = studentlist[index].gender;
+    // document.querySelector('input[name="gender"]:checked').value = studentlist[index].gender;
     document.getElementById("Playing" && "Travelling").value = studentlist[index].hobbie;
     document.querySelector('#City').value = studentlist[index].city;
     document.getElementById('file').value = studentlist[index].image;
     
+    
+    document.querySelector('#update').onclick = function (){
 
+        studentlist[index].firstname = document.getElementById("firstname").value;
+        studentlist[index].lastname = document.getElementById("lastname").value;
+        studentlist[index].email = document.getElementById("email").value;
+        studentlist[index].password = document.getElementById("password").value;
+        studentlist[index].image = document.getElementById("file").value;
+        studentlist[index].city = document.querySelector('#City').value;
+        studentlist[index].hobbie =  document.getElementById("Playing" && "Travelling").value;
+
+        localStorage.setItem("studentlist", JSON.stringify(studentlist));
+
+        document.getElementById("submit").style.display = "block";
+        document.getElementById("update").style.display = "none";
+        location.reload();
+        showdata()
+        resetForm();
+
+    }
+    
 }
 
 
+// Delete the data 
 function onDelete(index) {
     
     var studentlist;
     
     if (localStorage.getItem("studentlist") == null) {
         studentlist = [];
-        return false;
         
     }
     else {
@@ -138,10 +161,12 @@ function onDelete(index) {
 
     studentlist.splice(index, 1);
     localStorage.setItem("studentlist", JSON.stringify(studentlist));
-    document.onload =  showdata();
+    showdata();
 
 }
 
+
+// Reset the data 
 function resetForm() {
 
     document.getElementById("firstname").value = "";
