@@ -115,7 +115,7 @@ function onEdit(index) {
     document.getElementById("lastname").value = studentlist[index].lastname;
     document.getElementById("email").value = studentlist[index].email;
     document.getElementById("password").value = studentlist[index].password;
-    // document.querySelector('input[name="gender"]:checked').value = studentlist[index].gender;
+    // document.querySelector('input[name="gender"]:checked') = studentlist[index].gender;
     document.getElementById("Playing" && "Travelling").value = studentlist[index].hobbie;
     document.querySelector('#City').value = studentlist[index].city;
     document.getElementById('file').value = studentlist[index].image;
